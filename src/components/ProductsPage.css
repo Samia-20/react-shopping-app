@@ -1,0 +1,37 @@
+.cardContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 2fr));
+    gap: 25px;
+    padding: 100px;
+  }
+  
+  .card {
+    max-width: 800px; /* Adjust as needed */
+  }
+  
+  .cardMedia {
+    height: auto; /* Adjust based on your aspect ratio */
+  }
+  
+  .cardContent {
+    padding: 16px;
+  }
+  
+  .cardActions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 16px 16px;
+  }
+  
+  .buyButton {
+    background-color: #007bff; /* Example color */
+    color: white;
+  }
+  
+  /* Add media queries for responsiveness */
+  @media (max-width: 800px) {
+    .cardContainer {
+      grid-template-columns: 2fr;
+    }
+  }
+  
