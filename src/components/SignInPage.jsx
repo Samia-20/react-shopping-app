@@ -48,7 +48,7 @@ const SignInPage = () => {
             }}
             placeholder="******"
           />
-          <Button type="submit" color="primary" variant="contained" style={{ backgroundColor: '#304FFE', marginTop: '20px' }}>Sign In</Button>
+          <Button type="submit" color="primary" variant="contained" style={{ backgroundColor: '#304FFE', marginTop: '20px' }}>Log In</Button>
         </form>
         <div style={{ textAlign: 'center', marginTop: '20px' }}>
           <a href="/signup" style={{ textDecoration: 'none' }}>Don't have an account? Sign up</a>
