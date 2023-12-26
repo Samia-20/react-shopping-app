@@ -6,11 +6,11 @@
   }
   
   .card {
-    max-width: 800px; /* Adjust as needed */
+    max-width: 800px; 
   }
   
   .cardMedia {
-    height: auto; /* Adjust based on your aspect ratio */
+    height: auto; 
   }
   
   .cardContent {
@@ -24,11 +24,10 @@
   }
   
   .buyButton {
-    background-color: #007bff; /* Example color */
+    background-color: #007bff; 
     color: white;
   }
   
-  /* Add media queries for responsiveness */
   @media (max-width: 800px) {
     .cardContainer {
       grid-template-columns: 2fr;
@@ -67,3 +66,46 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+
+.filterBarContainer {
+  display: flex;
+  justify-content: center; 
+  position: relative; 
+  padding: 20px 0; 
+}
+
+
+
+.sortDropdownContainer {
+  position: absolute;
+  left: 0; 
+  top: 90%; 
+  padding: 15px;
+  transform: translateY(-50%); 
+  display: flex; 
+  flex-direction: column; 
+  align-items: flex-start; 
+}
+.customSelect {
+  background-color: #ffffff; 
+  border: 1px solid #d1d1d1; 
+  border-radius: 4px; 
+  padding: 5px 10px; 
+  font-size: 16px; 
+  color: #413d3d; 
+  width: 100%; 
+}
+
+.customSelect:focus {
+  outline: none; 
+  border-color: #007bff; 
+}
+
+.customOption {
+  padding: 5px; 
+  background-color: #f8f8f8; 
+  color: #000000; 
+}
+
+
