@@ -34,4 +34,36 @@
       grid-template-columns: 2fr;
     }
   }
+
+  .productFilter{
+    display: column
+  }
   
+  .filterBar{
+    display: flex;
+    margin-top: 20px;
+    padding:20px;
+    width:100;
+    margin-left: 300px;
+  }
+
+  .productItem{
+    background-color: white;
+    margin: 10px;
+    padding: 10px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap:12px
+}
+
+.body{
+  background-color: #F0F0F0;
+  display: flex;
+  flex-direction: column;
+}
+
+.bodyItems{
+  display: flex;
+  flex-wrap: wrap;
+}
