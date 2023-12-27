@@ -5,6 +5,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react';
+
+
 export default function ProductDetails() {
     const [quantity, setQuantity] = useState('');
   const handleQuantityChange = (event) => {

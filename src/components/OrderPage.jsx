@@ -1,13 +1,14 @@
 import React from 'react'
 import { useLocation } from 'react-router';
 import { useState } from 'react';
-import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import "./OrderPage.css"
+import AddressBar from './AddressBar';
+
 
 const steps = ['Items','Select Address', 'Confirm Order'];
 
@@ -59,11 +60,10 @@ export default function OrderPage() {
     );
   };
 
-  const AddressStep = ({ address, setAddress }) => {
+  const AddressStep = () => {
     return (
       <div>
-        <h2>Enter Address</h2>
-        {/* Add your component content for the Address step */}
+        <AddressBar/>
       </div>
     );
   };
