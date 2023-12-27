@@ -7,6 +7,7 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import "./OrderPage.css"
 
 const steps = ['Items','Select Address', 'Confirm Order'];
 
@@ -40,12 +41,21 @@ export default function OrderPage() {
          return 'Unknown stepIndex';
      }
    };
-   const ItemsStep = ({ items, setItems }) => {
+   const ItemsStep = () => {
     return (
-      <div>
-        <h2>Items</h2>
-        {/* Add your component content for the Items step */}
+        <div className='itemContainer'>
+        
+      <div className='itemLeft'>
+      <img style={{width:300,height:300,marginLeft:300}} src={product.image} alt={product.title} />
       </div>
+      <div className='itemRight'>
+      <h3>{product.title}</h3>
+      <p>Category: <b>{product.category}</b></p>
+    <p>{product.description}</p>
+    <p >Price: ₹ {product.price}</p>
+    <p> <b>Ordered Quantity:</b> {quantity}</p>
+      </div>
+  </div>
     );
   };
 
