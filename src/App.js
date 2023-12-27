@@ -6,6 +6,7 @@ import SignInPage from './components/SignInPage';
 import SignUpPage from './components/SignUpPage';
 import ProductsPage from './components/ProductsPage';
 import ProductDetails from './components/ProductDetails';
+import OrderPage from './components/OrderPage';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -28,6 +29,7 @@ function App() {
         <Route path="/login" element={<SignInPage onLogin={handleLogin} />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/productDetails" element={<ProductDetails />} />
+        <Route path="/orders" element={<OrderPage />} />
         {/* other routes for your application */}
       </Routes>
     </BrowserRouter>
