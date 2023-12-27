@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import CardActions from '@material-ui/core/CardActions';
 import './ProductsPage.css'
 import FilterBar from './FilterBar';
+import ProductCard from './ProductCard';
+
 const SortDropdown = ({ onSortChange }) => {
   return (
     <select onChange={(e) => onSortChange(e.target.value)} className="customSelect">
@@ -18,37 +13,9 @@ const SortDropdown = ({ onSortChange }) => {
     </select>
   );
 };
-const ProductCard = ({ product }) => {
-  return (
-    <Card sx={{ maxWidth: 345, height:50}}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          alt={product.title}
-          sx={{height:50}}
-          image={product.image}
-          title={product.title}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {product.title}
-          </Typography>
-           <Typography variant="body2" color="textSecondary" component="p">
-            {product.description}
-          </Typography> 
-          <Typography variant="h6" component="h3">
-            ₹ {product.price}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          BUY
-        </Button>
-      </CardActions>
-    </Card>
-  );
-};
+
+
+
 
 const ProductsGrid = () => {
   const [products, setProducts] = useState([]);
@@ -93,10 +60,7 @@ const ProductsGrid = () => {
     setSelectedCategory(newCategory);
   };
 
-  const filteredProducts =
-    selectedCategory === 'all'
-      ? products
-      : products.filter((product) => product.category === selectedCategory);
+
       return (
         <div className='body'>
           <div className='filterBarContainer'>
@@ -121,31 +85,6 @@ const ProductsGrid = () => {
         </div>
       );
     };
-  // return (
-  //   <div className='body'>
-  //     <div className='filterBar'>
-  //     <FilterBar
-  //       categories={categories}
-  //       selectedCategory={selectedCategory}
-  //       handleCategoryChange={handleCategoryChange}
-  //     />
-  //     </div>
-  //     <div className="cardContainer">
-  //     {filteredProducts.map(product => (
-  //     <ProductCard key={product.id} product={product} />
-  //   ))}
-  //     </div>
-  //   </div>
-  // ); 
-
- /*  return (
-     <div className="cardContainer">
-   {filteredProducts.map(product => (
-     <ProductCard key={product.id} product={product} />
-   ))}
- </div>
-   ); */
-
-// };
+  
 
 export default ProductsGrid;

@@ -5,7 +5,7 @@ import NavBar from './components/NavBar';
 import SignInPage from './components/SignInPage';
 import SignUpPage from './components/SignUpPage';
 import ProductsPage from './components/ProductsPage';
-
+import ProductDetails from './components/ProductDetails';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -27,6 +27,7 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<SignInPage onLogin={handleLogin} />} />
         <Route path="/products" element={<ProductsPage />} />
+        <Route path="/productDetails" element={<ProductDetails />} />
         {/* other routes for your application */}
       </Routes>
     </BrowserRouter>

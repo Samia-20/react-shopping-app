@@ -1,0 +1,27 @@
+.productDetailContainer{
+    display: flex;
+    margin-top: 80px;
+}
+
+.productLeft{
+    flex:0.25;
+    
+}
+
+.productRight{
+    flex:0.5;
+    margin: 10px;
+    padding: 10px;
+    margin-right: 300;
+}
+
+.orderQuantityBox{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    outline: none;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 5px;
+    width:10px
+}
