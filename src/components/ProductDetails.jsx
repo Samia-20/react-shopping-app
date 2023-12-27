@@ -15,7 +15,7 @@ export default function ProductDetails() {
     const location = useLocation();
   const product = location.state.product;
   const placeOrder = (item) => {
-    toast('Order Placed!', {
+    toast('Order Confirmed!', {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
