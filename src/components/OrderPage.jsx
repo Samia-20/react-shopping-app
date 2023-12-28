@@ -70,6 +70,7 @@ export default function OrderPage() {
       },2000);} 
      }
    };
+  
    const ItemsStep = () => {
     return (
         <div className='itemContainer'>
@@ -123,9 +124,12 @@ export default function OrderPage() {
             <Button  sx={{ mr: 1 }} disabled={activeStep === 0} onClick={handleBack}>
              Back
            </Button>
-           <Button variant="contained" color="primary" onClick={handleNext}>
-             {activeStep === steps.length - 1 ? 'Place Order' : 'Next'}
-           </Button>
+           {activeStep === 1? (<div></div>) : (
+            <Button variant="contained" color="primary" onClick={handleNext}>
+            {activeStep === steps.length - 1 ? 'Place Order' : 'Next'}
+          </Button>
+           )
+           }
            </Box>
             </>
           ): (<div></div>)

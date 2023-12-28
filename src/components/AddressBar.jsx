@@ -14,7 +14,22 @@ const AddressBar = ({onStateChange}) => {
 
   const submitAddress =  (event) => {
     event.preventDefault();
-    const addressDetails = `${name}, ${street}, ${city}, ${state}, ${landmark}, ${zipCode}, ${contactNumber}`;
+    if (`${name}` === ''  || `${street}` === '' 
+    || `${city}` === ''  || `${state}` === ''
+    || `${zipCode}` === ''  || `${contactNumber}` === '') {
+      toast.error('Please enter all required fields!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
+    }
+    else {
+      const addressDetails = `${name}, ${street}, ${city}, ${state}, ${landmark}, ${zipCode}, ${contactNumber}`;
     toast('Address Saved!', {
       position: "top-right",
       autoClose: 2000,
@@ -26,7 +41,7 @@ const AddressBar = ({onStateChange}) => {
       theme: "light",
       });
     onStateChange(addressDetails);
-   
+    }
   };
 
   return (
@@ -93,7 +108,7 @@ const AddressBar = ({onStateChange}) => {
             onChange={(e) => setLandmark(e.target.value)}
             required
             fullWidth
-            placeholder="Land Mark*"
+            placeholder="Land Mark"
           />
           <TextField
             label="ZipCode"
@@ -104,7 +119,7 @@ const AddressBar = ({onStateChange}) => {
             placeholder="Zip Code*"
           />
           
-          <Button type="submit" color="primary" variant="contained" style={{ backgroundColor: '#304FFE', marginTop: '20px' }}>SAVE ADDRESS</Button>
+          <Button type="submit" color="primary" variant="contained" style={{ backgroundColor: '#304FFE', marginTop: '20px' }}>SAVE ADDRESS / NEXT</Button>
         </form>
         
       </Paper>
