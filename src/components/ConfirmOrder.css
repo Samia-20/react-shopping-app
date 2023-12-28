@@ -1,17 +1,20 @@
 .confirmPageContainer{
     display: flex;
-    margin-top: 80px;
+    size: 100px;
+    margin-top: 20px;
+    margin-right: 200px;
+    margin-left: 200px;
+   border-style:outset
 }
 
 .confirmPageLeft{
-    flex:0.25;
-    margin-right: 20px;
+    flex: 0.5;
     flex-direction: column;
+    border-style:outset
 }
 
 .confirmPageRight{
     flex:0.5;
-    margin: 10px;
-    padding: 10px;
-    margin-right: 300;
+    border-style:outset;
+    text-align:center;
 }

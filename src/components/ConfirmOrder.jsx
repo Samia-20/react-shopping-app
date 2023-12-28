@@ -7,12 +7,15 @@ function ConfirmOrder({address,product,quantity}) {
       
       <div className='confirmPageContainer'>
           <div className='confirmPageLeft'>
-          <img style={{width:300,height:300,marginLeft:300}} src={product.image} alt={product.title} />
+          <img style={{width:150,height:150}} src={product.image} alt={product.title} />
           <h3>{product.title}</h3>
-            <p>Category: <b>{product.category}</b></p>
+          <div className='description' style={{font: 'message-box'}}>
+            <p><b>Category:</b>{product.category}</p>
             <p>{product.description}</p>
-            <p>Ordered Quantity: {quantity}</p>
-            <p > Total Price: ₹ {product.price * quantity}</p>
+            <p><b>Ordered Quantity:</b> {quantity}</p>
+            <p ><b>Total Price:</b> ₹ {product.price * quantity}</p>
+          </div>
+            
           </div>
           <div className='confirmPageRight'>
           <h3>Address Details</h3>

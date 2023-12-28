@@ -5,6 +5,7 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -89,7 +90,7 @@ export default function OrderPage() {
 
 
    return (
-     <div>
+     <div style={{marginTop: 30}}>
        <Stepper activeStep={activeStep} alternativeLabel>
          {steps.map((label) => (
            <Step key={label}>
@@ -100,7 +101,7 @@ export default function OrderPage() {
        <div>
        <ToastContainer
             position="top-right"
-            autoClose={2000}
+            autoClose={5000}
             hideProgressBar={false}
             newestOnTop={false}
             closeOnClick
@@ -115,14 +116,20 @@ export default function OrderPage() {
          <Typography component="div" style={{ margin: '20px 0' }}>
            {getStepContent(activeStep)}
          </Typography>
-         <div>
-           <Button disabled={activeStep === 0} onClick={handleBack}>
+         
+          {activeStep < steps.length? (
+            <>
+            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2, marginLeft: 70}}>
+            <Button  sx={{ mr: 1 }} disabled={activeStep === 0} onClick={handleBack}>
              Back
            </Button>
            <Button variant="contained" color="primary" onClick={handleNext}>
              {activeStep === steps.length - 1 ? 'Place Order' : 'Next'}
            </Button>
-         </div>
+           </Box>
+            </>
+          ): (<div></div>)
+          }
        </div>
      </div>
    );
