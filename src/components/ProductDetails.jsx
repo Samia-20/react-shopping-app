@@ -11,7 +11,6 @@ export default function ProductDetails() {
     const [quantity, setQuantity] = useState('');
   const handleQuantityChange = (event) => {
     setQuantity(event.target.value);
-    console.log("entered quantity:" + quantity);
   };
     const navigate = useNavigate();
     const location = useLocation();

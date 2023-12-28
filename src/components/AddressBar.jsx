@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Paper, Typography, TextField, Button } from '@material-ui/core';
-import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -12,14 +11,13 @@ const AddressBar = ({onStateChange}) => {
   const [landmark, setLandmark] = useState('');
   const [zipCode, setZipCode] = useState('');
   const [contactNumber, setContactNumber] = useState('');
-  const navigate = useNavigate();
 
   const submitAddress =  (event) => {
     event.preventDefault();
     const addressDetails = `${name}, ${street}, ${city}, ${state}, ${landmark}, ${zipCode}, ${contactNumber}`;
     toast('Address Saved!', {
       position: "top-right",
-      autoClose: 5000,
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,

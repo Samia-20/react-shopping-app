@@ -1,11 +1,13 @@
 import React from 'react'
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { useState } from 'react';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./OrderPage.css"
 import AddressBar from './AddressBar';
 import ConfirmOrder from './ConfirmOrder';
@@ -20,8 +22,23 @@ export default function OrderPage() {
    const [activeStep, setActiveStep] = useState(0);
    const [address, setAddress] = useState('');
    // Add any other necessary state for each step
- 
+  const navigate = useNavigate();
    const handleNext = () => {
+    if(activeStep === 2){
+      toast('Order Placed Successfully!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+        setTimeout(()=>{
+          navigate("/products")
+        },2000)
+    }
      setActiveStep((prevActiveStep) => prevActiveStep + 1);
    };
  
@@ -45,9 +62,11 @@ export default function OrderPage() {
        case 1:
          return <AddressBar onStateChange={handleAddressUpdate} />;
        case 2:
-         return <ConfirmOrder address={address} product={product} />;
+         return <ConfirmOrder address={address} product={product} quantity={quantity} />;
        default:
-         return 'Unknown stepIndex';
+        {  setTimeout(()=>{
+        navigate("/products")
+      },2000);} 
      }
    };
    const ItemsStep = () => {
@@ -79,6 +98,20 @@ export default function OrderPage() {
          ))}
        </Stepper>
        <div>
+       <ToastContainer
+            position="top-right"
+            autoClose={2000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
+          {/* Same as */}
+          <ToastContainer />
          <Typography component="div" style={{ margin: '20px 0' }}>
            {getStepContent(activeStep)}
          </Typography>
