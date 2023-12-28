@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Paper, Typography, TextField, Button } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const AddressBar = () => {
+const AddressBar = ({onStateChange}) => {
   const [name, setName] = useState('');
   const [street, setStreet] = useState('');
   const [city, setCity] = useState('');
@@ -12,19 +14,39 @@ const AddressBar = () => {
   const [contactNumber, setContactNumber] = useState('');
   const navigate = useNavigate();
 
-  const submitAddress = async (event) => {
+  const submitAddress =  (event) => {
     event.preventDefault();
-    return (
-    <div style={{ marginTop: '65px', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
-      <Paper style={{ padding: 20, maxWidth: 400, width: '100%', boxSizing: 'border-box' }}>
-        <Typography variant="h5" style={{ textAlign: 'center', marginBottom: '20px' }}>Address Saved</Typography>
-      </Paper>
-    </div>
-    )
+    const addressDetails = `${name}, ${street}, ${city}, ${state}, ${landmark}, ${zipCode}, ${contactNumber}`;
+    toast('Address Saved!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
+    onStateChange(addressDetails);
+   
   };
 
   return (
     <div style={{ marginTop: '65px', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
+       <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+        {/* Same as */}
+        <ToastContainer />
       <Paper style={{ padding: 20, maxWidth: 400, width: '100%', boxSizing: 'border-box' }}>
         <Typography variant="h5" style={{ textAlign: 'center', marginBottom: '20px' }}>Add Address</Typography>
         <form onSubmit={submitAddress} noValidate autoComplete="off" style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>

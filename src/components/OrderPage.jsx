@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import "./OrderPage.css"
 import AddressBar from './AddressBar';
-
+import ConfirmOrder from './ConfirmOrder';
 
 const steps = ['Items','Select Address', 'Confirm Order'];
 
@@ -18,7 +18,6 @@ export default function OrderPage() {
    const quantity = location.state.quantity;
 
    const [activeStep, setActiveStep] = useState(0);
-   const [items, setItems] = useState([]);
    const [address, setAddress] = useState('');
    // Add any other necessary state for each step
  
@@ -30,14 +29,23 @@ export default function OrderPage() {
      setActiveStep((prevActiveStep) => prevActiveStep - 1);
    };
  
+   const handleAddressUpdate = (newValue) => {
+    // Update the state in the parent component
+    setAddress(newValue);
+      setTimeout(()=>{
+        setActiveStep(2);
+      },2000)
+   
+  };
+
    const getStepContent = (stepIndex) => {
      switch (stepIndex) {
        case 0:
-         return <ItemsStep items={items} setItems={setItems} />;
+         return <ItemsStep/>;
        case 1:
-         return <AddressStep address={address} setAddress={setAddress} />;
+         return <AddressBar onStateChange={handleAddressUpdate} />;
        case 2:
-         return <ConfirmOrderStep items={items} address={address} />;
+         return <ConfirmOrder address={address} product={product} />;
        default:
          return 'Unknown stepIndex';
      }
@@ -60,22 +68,6 @@ export default function OrderPage() {
     );
   };
 
-  const AddressStep = () => {
-    return (
-      <div>
-        <AddressBar/>
-      </div>
-    );
-  };
-
-  const ConfirmOrderStep = ({ items, address }) => {
-    return (
-      <div>
-        <h2>Confirm Order</h2>
-        {/* Add your component content for the Confirm Order step */}
-      </div>
-    );
-  };
 
    return (
      <div>
