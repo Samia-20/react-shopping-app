@@ -23,7 +23,7 @@ const ProductsGrid = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [sortOption, setSortOption] = useState('default');
   useEffect(() => {
-    fetch('https://fakestoreapi.com/products')
+    fetch('http://localhost:8080/api/products')
       .then(res => res.json())
       .then(response => {
         setProducts(response);
