@@ -2,21 +2,23 @@ import React, { useState } from 'react';
 import { Paper, Typography, TextField, Button } from '@material-ui/core';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 const AddressBar = ({onStateChange}) => {
+  const navigate = useNavigate();
   const [name, setName] = useState('');
   const [street, setStreet] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [landmark, setLandmark] = useState('');
-  const [zipCode, setZipCode] = useState('');
+  const [zipcode, setZipCode] = useState('');
   const [contactNumber, setContactNumber] = useState('');
 
-  const submitAddress =  (event) => {
+  const submitAddress = async (event) => {
     event.preventDefault();
     if (`${name}` === ''  || `${street}` === '' 
     || `${city}` === ''  || `${state}` === ''
-    || `${zipCode}` === ''  || `${contactNumber}` === '') {
+    || `${zipcode}` === ''  || `${contactNumber}` === '') {
       toast.error('Please enter all required fields!', {
         position: "top-right",
         autoClose: 5000,
@@ -29,8 +31,19 @@ const AddressBar = ({onStateChange}) => {
         });
     }
     else {
-      const addressDetails = `${name}, ${street}, ${city}, ${state}, ${landmark}, ${zipCode}, ${contactNumber}`;
-    toast('Address Saved!', {
+      const token = localStorage.getItem('token');
+      
+      const addressDetails = { name, street, city, state, landmark, zipcode, contactNumber };
+      const response = await fetch('http://localhost:8080/api/addresses', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+           'x-auth-token': token, // Include this if you have a token variable for authentication
+        },
+        body: JSON.stringify(addressDetails),
+      });
+      if (response.status === 200) {
+      toast('Address Saved!', {
       position: "top-right",
       autoClose: 2000,
       hideProgressBar: false,
@@ -42,7 +55,8 @@ const AddressBar = ({onStateChange}) => {
       });
     onStateChange(addressDetails);
     }
-  };
+   navigate('/confirm-order');
+  }};
 
   return (
     <div style={{ marginTop: '65px', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
@@ -112,7 +126,7 @@ const AddressBar = ({onStateChange}) => {
           />
           <TextField
             label="ZipCode"
-            value={zipCode}
+            value={zipcode}
             onChange={(e) => setZipCode(e.target.value)}
             required
             fullWidth
