@@ -54,7 +54,7 @@ export default function ProductDetails() {
         {/* Same as */}
         <ToastContainer />
         <div className='productLeft'>
-        <img style={{width:300,height:300,marginLeft:300}} src={product.image} alt={product.title} />
+        <img style={{width:300,height:300,marginLeft:300}} src={product.imageUrl} alt={product.name} />
         </div>
         <div className='productRight'>
         <h3>{product.title}</h3>

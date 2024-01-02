@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
 
-const AddressBar = ({onStateChange}) => {
+const AddressBar = ({onStateChange , product, quantity , selectedAddress  }) => {
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [street, setStreet] = useState('');
@@ -15,7 +15,15 @@ const AddressBar = ({onStateChange}) => {
   const [zipcode, setZipCode] = useState('');
   const [contactNumber, setContactNumber] = useState('');
   const [addresses, setAddresses] = useState([]);
-  const [selectedAddress, setSelectedAddress] = useState('');
+
+  console.log('Product addressbar ', product);
+  console.log('quantity addressbar ', quantity);
+
+  //const [selectedAddress, setSelectedAddress] = useState();
+
+  /*useEffect(() => {
+    setSelectedAddress(selectedAddress);
+  }, [selectedAddress]);*/
 
   useEffect(() => {
     const fetchAddresses = async () => {
@@ -30,6 +38,7 @@ const AddressBar = ({onStateChange}) => {
         if (response.status === 200) {
           const data = await response.json();
           setAddresses(data);
+          console.log('addresses return from DB ', data);
         }
       } catch (error) {
         console.error('Error fetching addresses:', error);
@@ -41,20 +50,28 @@ const AddressBar = ({onStateChange}) => {
 
   // Handle address selection
   const handleAddressSelect = (event) => {
-    const selected = addresses.find(addr => addr._id === event.target.value);
-    if (selected) {
-      setName(selected.name);
-      setStreet(selected.street);
-      setCity(selected.city);
-      setState(selected.state);
-      setLandmark(selected.landmark);
-      setZipCode(selected.zipcode);
-      setContactNumber(selected.contactNumber);
-      setSelectedAddress(selected._id);
-    }
+    const selectedId = event.target.value;
+    console.log('selected address id : ', selectedId);
+    const selectedAddress = addresses.find(addr => addr.id === selectedId);
+    console.log('selected address: ', selectedAddress);
+     
+   
+    /*if (selectedAddress) {
+      setName(selectedAddress.name);
+      setStreet(selectedAddress.street);
+      setCity(selectedAddress.city);
+      setState(selectedAddress.state);
+      setLandmark(selectedAddress.landmark);
+      setZipCode(selectedAddress.zipcode);
+      setContactNumber(selectedAddress.contactNumber);
+      //setSelectedAddress(selectedAddress._id);
+    } */
+
+    onStateChange({ ...selectedAddress });
   };
 
   const submitAddress = async (event) => {
+    console.log('submitAddress Addressbar:');
     event.preventDefault();
     if (`${name}` === ''  || `${street}` === '' 
     || `${city}` === ''  || `${state}` === ''
@@ -95,7 +112,15 @@ const AddressBar = ({onStateChange}) => {
       });
     onStateChange(addressDetails);
     }
-   navigate('/confirm-order');
+    console.log('Confirm Order opend from Addressbar:');
+    console.log('Product addressbar ', product);
+    console.log('quantity addressbar ', quantity);
+    console.log('address ', addressDetails);
+   /*navigate('/address', { state: 
+    { product: product,
+      quantity: quantity
+    } 
+   });*/
   }};
 
   return (
@@ -123,7 +148,7 @@ const AddressBar = ({onStateChange}) => {
             label="Select Address"
           >
             {addresses.map((address) => (
-              <MenuItem key={address._id} value={address._id}>
+              <MenuItem key={address.id} value={address.id}>
                 {`${address.name}, ${address.street}, ${address.city}`}
               </MenuItem>
             ))}

@@ -9,6 +9,7 @@ import ProductDetails from './components/ProductDetails';
 import OrderPage from './components/OrderPage';
 import AddProduct from './components/AddProduct';
 import ConfirmOrder from './components/ConfirmOrder';
+import AddressBar from './components/AddressBar';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -34,6 +35,7 @@ function App() {
         <Route path="/orders" element={<OrderPage />} />
         <Route path="/add-products" element={<AddProduct />} />
         <Route path="/confirm-order" element={<ConfirmOrder />} />
+        <Route path="/address" element={<AddressBar />} />
       </Routes>
     </BrowserRouter>
   );

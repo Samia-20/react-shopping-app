@@ -23,8 +23,8 @@ export default function ProductCard ({ product }) {
               component="img"
               alt={product.title}
               sx={{height:50}}
-              image={product.image}
-              title={product.title}
+              image={product.imageUrl}
+              title={product.name}
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
