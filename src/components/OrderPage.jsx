@@ -26,7 +26,7 @@ export default function OrderPage() {
   const navigate = useNavigate();
    const handleNext = async() => {
     if(activeStep === 2){
-
+      /*
       toast('Order Placed Successfully!', {
         position: "top-right",
         autoClose: 5000,
@@ -40,16 +40,16 @@ export default function OrderPage() {
         setTimeout(()=>{
           navigate("/products")
         },2000)
-
+        */
         //Commented as we dont have orders POST method - Start
-        /*
+        
       const token = localStorage.getItem('token');
-      console.log('handleNext Step 2 : token ', token);
+      //console.log('handleNext Step 2 : token ', token);
       const product = selectedProduct.id;
-      console.log('handleNext Step 2 : productId ', product);
+      //console.log('handleNext Step 2 : productId ', product);
       const address = customerAddress.id;
-      console.log('handleNext Step 2 : addressId ', address);
-      const user = "65910921f2da056e5a461cc0"; //mocking 
+      //console.log('handleNext Step 2 : addressId ', address);
+      const user = localStorage.getItem('userID');
       console.log('handleNext Step 2 : quantity ', quantity);
       console.log('handleNext Step 2 : userId ', user);
       
@@ -65,7 +65,8 @@ export default function OrderPage() {
           },
           body: JSON.stringify(orderDetails),
         });
-        if (response.status === 200) {
+        
+        if (response.status === 200 || response.status === 201) {
           const data = await response.json();
           console.log('Order placed in DB ', data);
 
@@ -83,10 +84,15 @@ export default function OrderPage() {
               navigate("/products")
             },2000)
         }
-      } catch (error) {
+        else {
+          console.log('Failed to place order. Status:', response.status);
+          // Handle error scenarios specific to response status codes
+        }
+      }
+      catch (error) {
         console.error('Error while creating order:', error);
         console.log('Error while creating order ', error);
-      } */
+      } 
       //Commented as we dont have orders POST method - End
       
     }

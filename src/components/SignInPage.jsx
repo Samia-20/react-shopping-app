@@ -23,6 +23,22 @@ const SignInPage = ({ onLogin }) => {
       // Assuming successful login if the response is successful
       console.log('Sign in successful:', response.data);
       onLogin(response.data);
+      
+      /*
+      //to access user id and user roles
+      //we got below resonse 
+      email:  "admin@y.com"
+      id:  "65910921f2da0"
+      roles:  Array(1)
+      0:  "USER"
+      length:  1
+      */
+      const {id, roles} = response.data;
+      const userRoles = roles ? roles[0] : null
+      console.log("User ID:", id);
+      console.log("User Roles:", userRoles);
+      localStorage.setItem('userID', id);
+      localStorage.setItem('userRole', userRoles);
 
       const token = response.headers['x-auth-token'];
       localStorage.setItem('token', token);
