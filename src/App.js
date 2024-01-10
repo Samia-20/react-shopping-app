@@ -13,6 +13,7 @@ import AddressBar from './components/AddressBar';
 
 function App() {
   const [user, setUser] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleLogin = (userData) => {
     setUser(userData); // This function should be passed to your login component
@@ -22,15 +23,19 @@ function App() {
     setUser(null); // This resets the user state, effectively logging them out
   };
 
+  const handleSearch = (searchValue) => {
+    setSearchTerm(searchValue); // Update search term state
+  };
+
   return (
     <BrowserRouter>
       {/* The NavBar is placed outside of Routes so it's always rendered */}
-      <NavBar user={user} onLogout={handleLogout} />
+      <NavBar user={user} onLogout={handleLogout} onSearch={handleSearch}/>
       <Routes>
         {/* Define your Route components here */}
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<SignInPage onLogin={handleLogin} />} />
-        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/products" element={<ProductsPage searchTerm={searchTerm}/>} />
         <Route path="/productDetails" element={<ProductDetails />} />
         <Route path="/orders" element={<OrderPage />} />
         <Route path="/add-products" element={<AddProduct />} />
