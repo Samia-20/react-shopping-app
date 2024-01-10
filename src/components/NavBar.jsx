@@ -7,10 +7,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 
-const NavBar = ({ user, onLogout }) => {
+const NavBar = ({ user, onLogout, onSearch }) => {
   const navigate = useNavigate();
-  const [searchTerm, setSearchTerm] = useState('');
-
+  
   const handleLogout = () => {
     onLogout();
     navigate('/login');
@@ -18,7 +17,9 @@ const NavBar = ({ user, onLogout }) => {
 
   const handleSearch = (event) => {
     // Implement search functionality here
-    console.log(searchTerm);
+    console.log(event.target.value);
+    const searchValue = event.target.value;
+    onSearch(searchValue); // Pass the search term to the parent component
   };
   console.log('User info:', user);
 
@@ -35,33 +36,33 @@ const NavBar = ({ user, onLogout }) => {
           upGrad E-Shop
         </Typography>
         {user ? (
-        <TextField 
-        label="Search" 
-        variant="outlined" 
-        size="small" 
-        style={{ 
-          marginRight: '400px', 
-          backgroundColor: '#fff', // Assuming a white background
-          borderRadius: '4px', // Rounded corners
-          border: '1px solid #ced4da', // Light gray border
-        }} 
-        InputProps={{
-          style: {
-            height: '35px', // Adjust height as needed
-            padding: '10px', // Add padding
-          },
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton>
-                <SearchIcon />
-              </IconButton>
-            </InputAdornment>
-          )
-        }}
-        onChange={(e) => setSearchTerm(e.target.value)} 
-        onKeyPress={(e) => e.key === 'Enter' && handleSearch(e)}
-      />
-        ) : null}
+          <TextField 
+            label="Search" 
+            variant="outlined" 
+            size="small" 
+            style={{ 
+              marginRight: '400px', 
+              backgroundColor: '#fff', // Assuming a white background
+              borderRadius: '4px', // Rounded corners
+              border: '1px solid #ced4da', // Light gray border
+            }} 
+            InputProps={{
+              style: {
+                height: '35px', // Adjust height as needed
+                padding: '10px', // Add padding
+              },
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton>
+                    <SearchIcon />
+                  </IconButton>
+                </InputAdornment>
+              )
+            }}
+            onChange={handleSearch}
+            onKeyPress={(e) => e.key === 'Enter' && handleSearch(e)}
+          />
+          ) : null}
         {!user ? (
           <>
             <Button color="inherit" component={Link} to="/login">Login</Button>
@@ -69,10 +70,10 @@ const NavBar = ({ user, onLogout }) => {
           </>
         ) : (
           <>
-            <Button color="inherit" onClick={handleLogout}>Logout</Button>
             {user?.roles?.includes('ADMIN') && (
-  <Button color="inherit" component={Link} to="/add-products">Add Products</Button>
-)}
+            <Button color="inherit" component={Link} to="/add-products">Add Products</Button>
+            )}
+            <Button color="inherit" onClick={handleLogout}>Logout</Button>
           </>
         )}
       </Toolbar>
